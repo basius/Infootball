@@ -24,7 +24,7 @@ public class MainActivityMenuFragment extends Fragment {
         bResultats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), ResultsActivity.class);
+                Intent intent = new Intent(getContext(), ResultatsActivity.class);
                 startActivity(intent);
             }
         });
