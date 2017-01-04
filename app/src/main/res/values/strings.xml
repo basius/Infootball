@@ -5,7 +5,7 @@
     <string name="botoResultats">RESULTATS LLIGUES</string>
     <string name="botoContate">CONTACTE</string>
     <string name="title_activity_main_menu">MainActivityMenu</string>
-    <string name="action_settings">Settings</string>
+    <string name="equips">Equips</string>
     <string name="title_activity_results">ResultsActivity</string>
     <string name="title_activity_resultats">ResultatsActivity</string>
 </resources>
