@@ -1,8 +1,10 @@
 package com.example.basius.infootball;
 
+import android.os.AsyncTask;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -45,7 +47,6 @@ public class ResultatsActivityFragment extends Fragment {
                 "Infiltrados",
                 "Umberto D."
         };
-
         items = new ArrayList<>(Arrays.asList(data));
         adapter = new ArrayAdapter<>(
                 getContext(),
@@ -53,6 +54,8 @@ public class ResultatsActivityFragment extends Fragment {
                 R.id.tvName,
                 items
         );
+        refresh();
+        Log.d("DEBUG", "+++++++++++++");
         lvEquips.setAdapter(adapter);
         return view;
     }
@@ -71,7 +74,19 @@ public class ResultatsActivityFragment extends Fragment {
         }
         return super.onOptionsItemSelected(item);
     }
-     private void refresh(){
-
+    private void refresh(){
+        RefreshDataTask task = new RefreshDataTask();
+        task.execute();
      }
+
+    private class RefreshDataTask extends AsyncTask<Void,Void,Void>{
+        @Override
+        protected Void doInBackground(Void... voids) {
+            Log.d("DEBUG", "77777777777777");
+            FootballApi api = new FootballApi();
+            ArrayList<Equip> result = api.getAllTeams();
+            Log.d("DEBUG", result.toString());
+            return null;
+        }
+    }
 }

@@ -1,18 +1,19 @@
 package com.example.basius.infootball;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by basius on 4/01/17.
  */
 
-public class Equips {
+public class Equip implements Serializable {
     private String nom;
     private String grup;
     private String partitsJugats;
     private String punts;
     private String urlImage;
-    private List<Equips> equips;
+    private List<Equip> equips;
 
     public String getNom() {
         return nom;
@@ -54,17 +55,17 @@ public class Equips {
         this.urlImage = urlImage;
     }
 
-    public List<Equips> getEquips() {
+    public List<Equip> getEquips() {
         return equips;
     }
 
-    public void setEquips(List<Equips> equips) {
+    public void setEquips(List<Equip> equips) {
         this.equips = equips;
     }
 
     @Override
     public String toString() {
-        return "Equips{" +
+        return "Equip{" +
                 "nom='" + nom + '\'' +
                 ", grup='" + grup + '\'' +
                 ", partitsJugats='" + partitsJugats + '\'' +
