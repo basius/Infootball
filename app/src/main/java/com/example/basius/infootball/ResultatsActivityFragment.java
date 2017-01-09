@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -55,7 +57,6 @@ public class ResultatsActivityFragment extends Fragment {
                 items
         );
         refresh();
-        Log.d("DEBUG", "+++++++++++++");
         lvEquips.setAdapter(adapter);
         return view;
     }
@@ -82,11 +83,10 @@ public class ResultatsActivityFragment extends Fragment {
     private class RefreshDataTask extends AsyncTask<Void,Void,Void>{
         @Override
         protected Void doInBackground(Void... voids) {
-            Log.d("DEBUG", "77777777777777");
             FootballApi api = new FootballApi();
-            ArrayList<Equip> result = api.getAllTeams();
-            Log.d("DEBUG", result.toString());
+            String result = api.getAllTeams();
             return null;
         }
+
     }
 }
