@@ -42,25 +42,32 @@ public class FootballApi {
         return null;
     }
     static ArrayList<Equip> processJson(String jsonResponse) {
-        ArrayList<Equip> equip = new ArrayList<>();
+        ArrayList<Equip> equips = new ArrayList<>();
         try {
             JSONObject data = new JSONObject(jsonResponse);
             JSONObject standings = data.getJSONObject("standings");
         //  Log.d("NomEquip:  ", "NumeroGrups:   "+standings.length());
             char[] lletresGrups = {'A','B','C','D','E','F','G','H'};
-            for (int i = 0; i < standings.length(); i++) {
+            for (int grup = 0; grup < standings.length(); grup++) {
                 //Obtenim el grup, en cas de que hi hagin grups eliminats no es mostraran ja que
                 //nomes printem standings.length
-                JSONArray grups = standings.getJSONArray(lletresGrups[i]+"");
-                //JSONObject jsonGrup = jsonTeams.getJSONObject(i);
-                Log.d("NomEquip:  ", grups.get(i)+"");
-                Equip e = new Equip();
-
+                JSONArray grups = standings.getJSONArray(lletresGrups[grup]+"");
+                for(int equip = 0; equip < grups.length(); equip++){
+                        JSONObject equipActual = grups.getJSONObject(equip);
+                    Equip e = new Equip();
+                    e.setNom(equipActual.getString("team"));
+                    e.setGrup(equipActual.getString("group"));
+                    e.setPartitsJugats(equipActual.getString("playedGames"));
+                    e.setPunts(equipActual.getString("points"));
+                    e.setUrlImage(equipActual.getString("crestURI"));
+                    equips.add(e);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return equip;
+        Log.d("Equips:  ","TOTAL:   "+equips.size()+equips.toString());
+        return equips;
     }
 }
 

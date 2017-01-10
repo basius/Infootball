@@ -13,7 +13,6 @@ public class Equip implements Serializable {
     private String partitsJugats;
     private String punts;
     private String urlImage;
-    private List<Equip> equips;
 
     public String getNom() {
         return nom;
@@ -55,13 +54,6 @@ public class Equip implements Serializable {
         this.urlImage = urlImage;
     }
 
-    public List<Equip> getEquips() {
-        return equips;
-    }
-
-    public void setEquips(List<Equip> equips) {
-        this.equips = equips;
-    }
 
     @Override
     public String toString() {
@@ -71,7 +63,6 @@ public class Equip implements Serializable {
                 ", partitsJugats='" + partitsJugats + '\'' +
                 ", punts='" + punts + '\'' +
                 ", urlImage='" + urlImage + '\'' +
-                ", equips=" + equips +
                 '}';
     }
 }
