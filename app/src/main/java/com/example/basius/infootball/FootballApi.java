@@ -7,6 +7,7 @@ import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONStringer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 public class FootballApi {
     private String equipsChampions = "http://api.football-data.org/v1/competitions/440/leagueTable";
 
-    public String getAllTeams(){
+    public ArrayList<Equip> getAllTeams(){
         Uri builtUri = Uri.parse(equipsChampions)
                 .buildUpon()
                 .build();
@@ -31,59 +32,35 @@ public class FootballApi {
     }
 
     @Nullable
-    static String doCall(String url) {
-        HttpURLConnection c;
+    private ArrayList<Equip> doCall(String url) {
         try {
-            URL u = new URL(url);
-            c = (HttpURLConnection) u.openConnection();
-            c.setRequestMethod("GET");
-            c.setRequestProperty("Content-length", "0");
-            c.setRequestProperty("X-Auth-Token", "19916cabd8014f5ca0219bc519ba3764" ); // API Token
-            c.setUseCaches(false);
-            c.setAllowUserInteraction(false);
-            c.connect();
-            int status = c.getResponseCode();
-
-            switch (status) {
-                case 200:
-                case 201:
-                    BufferedReader br = new BufferedReader(new InputStreamReader(c.getInputStream()));
-                    StringBuilder sb = new StringBuilder();
-                    String line;
-                    while ((line = br.readLine()) != null) {
-                        sb.append(line+"\n");
-                        Log.d("NomEquip:  ", sb.toString());
-                    }
-                    br.close();
-                    //processJson(sb.toString());
-            }
-
-
-           // String JsonResponse = HttpUtils.get("http://api.football-data.org/v1/competitions/440/leagueTable/");
+            String JsonResponse = HttpUtils.get(url);
+            return processJson(JsonResponse);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
     }
     static ArrayList<Equip> processJson(String jsonResponse) {
-        //NO ESTA FUNCIONANT
-        ArrayList<Equip> teams = new ArrayList<>();
+        ArrayList<Equip> equip = new ArrayList<>();
         try {
             JSONObject data = new JSONObject(jsonResponse);
-            JSONArray jsonTeams = data.getJSONArray("teams");
-            Log.d("NomEquip:  ", "99999"+jsonTeams.length());
-            for (int i = 0; i < jsonTeams.length(); i++) {
-                  Log.d("NomEquip:  ", "99999"+jsonTeams.length());
-                JSONObject object = jsonTeams.getJSONObject(i);
+            JSONObject standings = data.getJSONObject("standings");
+        //  Log.d("NomEquip:  ", "NumeroGrups:   "+standings.length());
+            char[] lletresGrups = {'A','B','C','D','E','F','G','H'};
+            for (int i = 0; i < standings.length(); i++) {
+                //Obtenim el grup, en cas de que hi hagin grups eliminats no es mostraran ja que
+                //nomes printem standings.length
+                JSONArray grups = standings.getJSONArray(lletresGrups[i]+"");
+                //JSONObject jsonGrup = jsonTeams.getJSONObject(i);
+                Log.d("NomEquip:  ", grups.get(i)+"");
                 Equip e = new Equip();
-                if (object.has("team")) {
-                    e.setNom(object.getString("team"));
-                }
+
             }
-        } catch (JSONException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return teams;
+        return equip;
     }
 }
 

@@ -84,7 +84,7 @@ public class ResultatsActivityFragment extends Fragment {
         @Override
         protected Void doInBackground(Void... voids) {
             FootballApi api = new FootballApi();
-            String result = api.getAllTeams();
+            ArrayList<Equip> result = api.getAllTeams();
             return null;
         }
 
