@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 /**
@@ -45,7 +47,7 @@ public class EquipAdapter extends ArrayAdapter<Equip> {
         tvGrup.setText(equip.getGrup());
         tvPartitsJugats.setText("PJ: "+equip.getPartitsJugats());
         tvPunts.setText(equip.getPunts());
-
+        Glide.with(getContext()).load(equip.getUrlImage()).into(ibEscutEquip);
         // Retornem la View replena per a mostrarla
         return convertView;
     }
