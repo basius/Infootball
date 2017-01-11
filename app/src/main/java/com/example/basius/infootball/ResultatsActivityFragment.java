@@ -80,12 +80,12 @@ public class ResultatsActivityFragment extends Fragment {
         task.execute();
      }
 
-    private class RefreshDataTask extends AsyncTask<Void,Void,Void>{
+    private class RefreshDataTask extends AsyncTask<Void,Void, ArrayList<Equip>>{
         @Override
-        protected Void doInBackground(Void... voids) {
+        protected  ArrayList<Equip> doInBackground(Void... voids) {
             FootballApi api = new FootballApi();
             ArrayList<Equip> result = api.getAllTeams();
-            return null;
+            return result;
         }
 
     }
