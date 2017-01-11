@@ -4,7 +4,6 @@ import android.os.AsyncTask;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -14,8 +13,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -53,7 +50,7 @@ public class ResultatsActivityFragment extends Fragment {
         adapter = new ArrayAdapter<>(
                 getContext(),
                 R.layout.lv_equips,
-                R.id.tvName,
+                R.id.tvNomEquip,
                 items
         );
         lvEquips.setAdapter(adapter);
