@@ -56,7 +56,6 @@ public class ResultatsActivityFragment extends Fragment {
                 R.id.tvName,
                 items
         );
-        refresh();
         lvEquips.setAdapter(adapter);
         return view;
     }
@@ -88,5 +87,11 @@ public class ResultatsActivityFragment extends Fragment {
             return result;
         }
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        refresh();
     }
 }
