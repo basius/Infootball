@@ -20,8 +20,8 @@ import java.util.Arrays;
  * A placeholder fragment containing a simple view.
  */
 public class ResultatsActivityFragment extends Fragment {
-    private ArrayList<String> items;
-    private ArrayAdapter<String> adapter;
+    private ArrayList<Equip> items;
+    private EquipAdapter adapter;
     public ResultatsActivityFragment() {
     }
 
@@ -37,22 +37,13 @@ public class ResultatsActivityFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_resultats, container, false);
         ListView lvEquips = (ListView) view.findViewById(R.id.lvEquips);
         items = new ArrayList<>();
-        String[] data = {
-                "Los 400 golpes",
-                "El odio",
-                "El padrino",
-                "El padrino. Parte II",
-                "Ocurrió cerca de su casa",
-                "Infiltrados",
-                "Umberto D."
-        };
-        items = new ArrayList<>(Arrays.asList(data));
-        adapter = new ArrayAdapter<>(
+
+        adapter = new EquipAdapter(
                 getContext(),
                 R.layout.lv_equips,
-                R.id.tvNomEquip,
                 items
         );
+
         lvEquips.setAdapter(adapter);
         return view;
     }
@@ -84,6 +75,13 @@ public class ResultatsActivityFragment extends Fragment {
             return result;
         }
 
+        @Override
+        protected void onPostExecute(ArrayList<Equip> equips) {
+            adapter.clear();
+            for (Equip equip : equips) {
+                adapter.add(equip);
+            }
+        }
     }
 
     @Override
@@ -91,4 +89,6 @@ public class ResultatsActivityFragment extends Fragment {
         super.onStart();
         refresh();
     }
+
+
 }
