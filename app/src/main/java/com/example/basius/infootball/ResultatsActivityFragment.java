@@ -1,9 +1,12 @@
 package com.example.basius.infootball;
 
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -70,8 +73,16 @@ public class ResultatsActivityFragment extends Fragment {
     private class RefreshDataTask extends AsyncTask<Void,Void, ArrayList<Equip>>{
         @Override
         protected  ArrayList<Equip> doInBackground(Void... voids) {
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
             FootballApi api = new FootballApi();
-            ArrayList<Equip> result = api.getAllTeams();
+            ArrayList<Equip> equips = api.getAllTeams();
+            ArrayList<Equip> result = new ArrayList<>();
+            for(Equip e:equips){
+                //Quan l'equip que recorrem tingui activat el switch preference, l'afegim.
+                if(preferences.getBoolean("grup"+e.getGrup(),true) == true){
+                    result.add(e);
+                }
+            }
             return result;
         }
 

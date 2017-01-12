@@ -13,7 +13,7 @@
     <!-- Strings related to Settings -->
 
     <!-- Example General settings -->
-    <string name="pref_header_general">General</string>
+    <string name="pref_header_general">GRUP CHAMPIONS</string>
 
     <string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact
@@ -24,16 +24,15 @@
     <string name="pref_default_display_name">John Smith</string>
 
     <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
-    <string-array name="pref_example_list_titles">
-        <item>Always</item>
-        <item>When possible</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_example_list_values">
-        <item>1</item>
-        <item>0</item>
-        <item>-1</item>
-    </string-array>
+    <string name="selecciona_grup">GRUP CHAMPIONS</string>
+    <string name="grup_A">GRUP A</string>
+    <string name="grup_B">GRUP B</string>
+    <string name="grup_C">GRUP C</string>
+    <string name="grup_D">GRUP D</string>
+    <string name="grup_E">GRUP E</string>
+    <string name="grup_F">GRUP F</string>
+    <string name="grup_G">GRUP G</string>
+    <string name="grup_H">GRUP H</string>
 
     <!-- Example settings for Data & Sync -->
     <string name="pref_header_data_sync">Data &amp; sync</string>
