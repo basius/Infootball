@@ -1,6 +1,7 @@
 package com.example.basius.infootball;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,12 +42,12 @@ public class EquipAdapter extends ArrayAdapter<Equip> {
         TextView tvPartitsJugats = (TextView) convertView.findViewById(R.id.tvPartitsJugats);
         TextView tvPunts = (TextView) convertView.findViewById(R.id.tvPunts);
         ImageView ibEscutEquip = (ImageView) convertView.findViewById(R.id.ibEscutEquip);
-
         // Fiquem les dades dels objectes (provinents del JSON) en el layout
         tvNomEquip.setText(equip.getNom());
         tvGrup.setText(equip.getGrup());
         tvPartitsJugats.setText("PJ: "+equip.getPartitsJugats());
         tvPunts.setText(equip.getPunts());
+        ibEscutEquip.setBackgroundColor(Color.BLACK);
         Glide.with(getContext()).load(equip.getUrlImage()).into(ibEscutEquip);
         // Retornem la View replena per a mostrarla
         return convertView;

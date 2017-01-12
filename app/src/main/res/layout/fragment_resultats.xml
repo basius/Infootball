@@ -10,7 +10,7 @@
 
 
     <TextView
-        android:text="TextView"
+        android:text="Champions League 2016/17"
         android:id="@+id/tvLliga"
         android:layout_width="0dp"
         android:layout_height="51dp"
@@ -21,7 +21,8 @@
         android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="16dp" />
+        android:layout_marginLeft="16dp"
+        android:gravity="center_horizontal" />
 
     <ListView
         android:layout_width="0dp"

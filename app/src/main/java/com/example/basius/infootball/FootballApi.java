@@ -46,7 +46,6 @@ public class FootballApi {
         try {
             JSONObject data = new JSONObject(jsonResponse);
             JSONObject standings = data.getJSONObject("standings");
-        //  Log.d("NomEquip:  ", "NumeroGrups:   "+standings.length());
             char[] lletresGrups = {'A','B','C','D','E','F','G','H'};
             for (int grup = 0; grup < standings.length(); grup++) {
                 //Obtenim el grup, en cas de que hi hagin grups eliminats no es mostraran ja que
