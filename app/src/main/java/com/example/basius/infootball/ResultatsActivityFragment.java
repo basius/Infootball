@@ -13,11 +13,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-
 import java.util.ArrayList;
-import java.util.Arrays;
+import android.databinding.DataBindingUtil;
+
+import com.example.basius.infootball.databinding.FragmentResultatsBinding;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -25,6 +24,7 @@ import java.util.Arrays;
 public class ResultatsActivityFragment extends Fragment {
     private ArrayList<Equip> items;
     private EquipAdapter adapter;
+    private FragmentResultatsBinding binding;
     public ResultatsActivityFragment() {
     }
 
@@ -37,8 +37,9 @@ public class ResultatsActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_resultats, container, false);
-        ListView lvEquips = (ListView) view.findViewById(R.id.lvEquips);
+        binding = DataBindingUtil.inflate(
+                                inflater, R.layout.fragment_resultats, container, false);
+                View view = binding.getRoot();
         items = new ArrayList<>();
 
         adapter = new EquipAdapter(
@@ -47,7 +48,7 @@ public class ResultatsActivityFragment extends Fragment {
                 items
         );
 
-        lvEquips.setAdapter(adapter);
+        binding.lvEquips.setAdapter(adapter);
         return view;
     }
 
