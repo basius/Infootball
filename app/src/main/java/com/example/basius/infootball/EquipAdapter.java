@@ -38,7 +38,7 @@ public class EquipAdapter extends ArrayAdapter<Equip> {
         }else{
             binding = DataBindingUtil.getBinding(convertView);
         }
-            binding.tvNomEquip.setText(equip.getNom());
+        binding.tvNomEquip.setText(equip.getNom());
         binding.tvGrup.setText(equip.getGrup());
         binding.tvPartitsJugats.setText("PJ: "+equip.getPartitsJugats());
         binding.tvPunts.setText(equip.getPunts());

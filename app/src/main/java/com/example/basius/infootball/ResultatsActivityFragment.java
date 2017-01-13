@@ -1,6 +1,7 @@
 package com.example.basius.infootball;
 
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
@@ -15,8 +16,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 import android.databinding.DataBindingUtil;
-
 import com.example.basius.infootball.databinding.FragmentResultatsBinding;
+import static nl.qbusict.cupboard.CupboardFactory.cupboard;
+import nl.littlerobots.cupboard.tools.provider.UriHelper;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -71,28 +73,21 @@ public class ResultatsActivityFragment extends Fragment {
         task.execute();
      }
 
-    private class RefreshDataTask extends AsyncTask<Void,Void, ArrayList<Equip>>{
+    private class RefreshDataTask extends AsyncTask<Void,Void,Void>{
         @Override
-        protected  ArrayList<Equip> doInBackground(Void... voids) {
+        protected Void doInBackground(Void... voids) {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-            FootballApi api = new FootballApi();
-            ArrayList<Equip> equips = api.getAllTeams();
+            ArrayList<Equip> equips = FootballApi.getAllTeams();
             ArrayList<Equip> result = new ArrayList<>();
-            for(Equip e:equips){
+            for (Equip e : equips) {
                 //Quan l'equip que recorrem tingui activat el switch preference, l'afegim.
-                if(preferences.getBoolean("grup"+e.getGrup(),true) == true){
+                if (preferences.getBoolean("grup" + e.getGrup(), true) == true) {
                     result.add(e);
                 }
             }
-            return result;
-        }
-
-        @Override
-        protected void onPostExecute(ArrayList<Equip> equips) {
-            adapter.clear();
-            for (Equip equip : equips) {
-                adapter.add(equip);
-            }
+            //Registro els equips a la BBDD
+            DataManager.guardaEquip(result, getContext());
+            return null;
         }
     }
 

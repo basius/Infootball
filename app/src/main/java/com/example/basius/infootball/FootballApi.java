@@ -21,9 +21,9 @@ import java.util.ArrayList;
  */
 
 public class FootballApi {
-    private String equipsChampions = "http://api.football-data.org/v1/competitions/440/leagueTable";
+    private static String equipsChampions = "http://api.football-data.org/v1/competitions/440/leagueTable";
 
-    public ArrayList<Equip> getAllTeams(){
+    static ArrayList<Equip> getAllTeams(){
         Uri builtUri = Uri.parse(equipsChampions)
                 .buildUpon()
                 .build();
@@ -32,7 +32,7 @@ public class FootballApi {
     }
 
     @Nullable
-    private ArrayList<Equip> doCall(String url) {
+    static ArrayList<Equip> doCall(String url) {
         try {
             String JsonResponse = HttpUtils.get(url);
             return processJson(JsonResponse);
