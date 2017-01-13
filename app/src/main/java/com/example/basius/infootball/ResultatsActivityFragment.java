@@ -25,7 +25,7 @@ import nl.littlerobots.cupboard.tools.provider.UriHelper;
  */
 public class ResultatsActivityFragment extends Fragment {
     private ArrayList<Equip> items;
-    private EquipAdapter adapter;
+    private InfootballCursorAdapter adapter;
     private FragmentResultatsBinding binding;
     public ResultatsActivityFragment() {
     }
@@ -44,11 +44,7 @@ public class ResultatsActivityFragment extends Fragment {
                 View view = binding.getRoot();
         items = new ArrayList<>();
 
-        adapter = new EquipAdapter(
-                getContext(),
-                R.layout.lv_equips,
-                items
-        );
+        adapter = new InfootballCursorAdapter(getContext(), Equip.class);
 
         binding.lvEquips.setAdapter(adapter);
         return view;
