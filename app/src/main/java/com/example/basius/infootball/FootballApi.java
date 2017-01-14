@@ -56,7 +56,7 @@ public class FootballApi {
                     Equip e = new Equip();
                     e.setNom(equipActual.getString("team"));
                     e.setGrup("Grup: "+equipActual.getString("group"));
-                    e.setPartitsJugats("Partits Jugats: "+equipActual.getString("playedGames"));
+                    e.setPartitsJugats("Partits jugats: "+equipActual.getString("playedGames"));
                     e.setPunts(equipActual.getString("points"));
                     e.setUrlImage(equipActual.getString("crestURI"));
                     equips.add(e);
