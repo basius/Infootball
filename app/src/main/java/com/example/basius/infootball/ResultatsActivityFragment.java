@@ -1,12 +1,16 @@
 package com.example.basius.infootball;
 
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.LoaderManager;
+
+import android.support.v4.content.Loader;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -23,7 +27,7 @@ import nl.littlerobots.cupboard.tools.provider.UriHelper;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class ResultatsActivityFragment extends Fragment {
+public class ResultatsActivityFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>{
     private ArrayList<Equip> items;
     private InfootballCursorAdapter adapter;
     private FragmentResultatsBinding binding;
@@ -47,6 +51,7 @@ public class ResultatsActivityFragment extends Fragment {
         adapter = new InfootballCursorAdapter(getContext(), Equip.class);
 
         binding.lvEquips.setAdapter(adapter);
+        getLoaderManager().initLoader(0, null, this);
         return view;
     }
 
@@ -68,6 +73,21 @@ public class ResultatsActivityFragment extends Fragment {
         RefreshDataTask task = new RefreshDataTask();
         task.execute();
      }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return DataManager.getCursorLoader(getContext());
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        adapter.swapCursor(data);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        adapter.swapCursor(null);
+    }
 
     private class RefreshDataTask extends AsyncTask<Void,Void,Void>{
         @Override

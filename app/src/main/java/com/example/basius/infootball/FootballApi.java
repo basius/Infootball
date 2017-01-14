@@ -55,8 +55,8 @@ public class FootballApi {
                         JSONObject equipActual = grups.getJSONObject(equip);
                     Equip e = new Equip();
                     e.setNom(equipActual.getString("team"));
-                    e.setGrup(equipActual.getString("group"));
-                    e.setPartitsJugats(equipActual.getString("playedGames"));
+                    e.setGrup("Grup: "+equipActual.getString("group"));
+                    e.setPartitsJugats("Partits Jugats: "+equipActual.getString("playedGames"));
                     e.setPunts(equipActual.getString("points"));
                     e.setUrlImage(equipActual.getString("crestURI"));
                     equips.add(e);

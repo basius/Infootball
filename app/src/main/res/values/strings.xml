@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Infootball</string>
     <string name="titolBotoPortada">GO AND LISTEN</string>
-    <string name="botoInfo">INFORMACIO CLUB</string>
-    <string name="botoResultats">RESULTATS LLIGUES</string>
+    <string name="botoInfo">INFORMACIO</string>
+    <string name="botoResultats">RESULTATS CHAMPIONS</string>
     <string name="botoContate">CONTACTE</string>
     <string name="title_activity_main_menu">MainActivityMenu</string>
     <string name="equips">Equips</string>
