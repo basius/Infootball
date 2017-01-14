@@ -18,6 +18,6 @@ public class DataManager {
         cupboard().withContext(context).put(EQUIP_URI, Equip.class, equips);
     }
     public static void eliminaEquip(Context context) {
-        cupboard().withContext(context).delete(EQUIP_URI, "_id > ?", "1");
+        cupboard().withContext(context).delete(EQUIP_URI, "_id > ?", "0");
     }
 }

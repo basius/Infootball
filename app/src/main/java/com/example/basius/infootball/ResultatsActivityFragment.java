@@ -82,6 +82,7 @@ public class ResultatsActivityFragment extends Fragment {
                 }
             }
             //Registro els equips a la BBDD
+            DataManager.eliminaEquip(getContext());
             DataManager.guardaEquip(result, getContext());
             return null;
         }
